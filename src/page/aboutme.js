@@ -1,8 +1,6 @@
-import { tab } from '@testing-library/user-event/dist/tab';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import Footer from '../constant/footer';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AboutMe = () => {
     const content = { 
@@ -28,9 +26,9 @@ const AboutMe = () => {
                 <p className="text-white mt-8 text-md text-center">Hiện tại mình đang là sinh viên năm 4 ngành Kỹ thuật phần mềm tại trường Đại Học Sài Gòn.</p>
                 <hr className="bg-white mt-8 mx-auto"></hr>
                 <div className="justify-items-center w-full mt-8 pb-32 mx-auto grid grid-cols-3">
-                    <a href="https://www.facebook.com/tea.limho/" target="_blank"><img className="h-full ..." src="img/icon/icon_fb.svg"></img></a>
-                    <a href="https://www.instagram.com/millohh_/" target="_blank"><img clclassNameass="h-full ..." src="img/icon/icon_insta.svg"></img></a>
-                    <a href="https://github.com/holimm" target="_blank"><img className="h-full ..." src="img/icon/icon_github.svg"></img></a>
+                    <a href="https://www.facebook.com/tea.limho/" target="_blank" rel="noreferrer"><img className="h-full ..." src="img/icon/icon_fb.svg" alt="FBIcon"></img></a>
+                    <a href="https://www.instagram.com/millohh_/" target="_blank" rel="noreferrer"><img clclassNameass="h-full ..." src="img/icon/icon_insta.svg" alt="InstagramIcon"></img></a>
+                    <a href="https://github.com/holimm" target="_blank" rel="noreferrer"><img className="h-full ..." src="img/icon/icon_github.svg" alt="GitIcon"></img></a>
                 </div>
                 </div>
             </div>

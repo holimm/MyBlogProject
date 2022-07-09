@@ -1,11 +1,9 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./page/layout";
 import Home from "./page/home";
-import Header from "./page/header";
 import AboutMe from "./page/aboutme";
 import Login from "./page/login";
-import Footer from "./constant/footer";
 
 export default function App() {
     return (

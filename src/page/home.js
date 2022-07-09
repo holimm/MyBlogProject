@@ -1,8 +1,6 @@
-import { tab } from '@testing-library/user-event/dist/tab';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import Footer from '../constant/footer';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     function RenderTextGlitch(){

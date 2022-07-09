@@ -1,7 +1,5 @@
-import { tab } from '@testing-library/user-event/dist/tab';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Outlet, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 const Header = () => {
     function RenderHeaderNav() {
@@ -22,11 +20,9 @@ const Header = () => {
     }
     function RenderHeaderNavMobile() {
         return (
-        <nav class="flex sm:hidden justify-between items-center bg-white sticky top-0 w-full h-20 z-30">
-            <div class="float-right">        
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-            </svg>
+        <nav className="flex sm:hidden justify-between items-center bg-white sticky top-0 w-full h-20 z-30">
+            <div className="float-right">        
+
             </div>
         </nav>    
     );
