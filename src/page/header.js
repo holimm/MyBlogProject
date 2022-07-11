@@ -1,7 +1,27 @@
 import React from 'react';
 import {Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    let isLoggedIn = sessionStorage.getItem('username');
+    const navigate = useNavigate();
+    function LoginButton() {
+        return(
+            <Link to="/login"><li className="mx-2 md:mx-6 lg:mx-12 text-xl text-white font-sans box-decoration-clone bg-gradient-to-r from-rose-400 to-red-500 hover:from-rose-600 hover:to-red-700 hover:duration-300 px-3 py-2">Đăng nhập</li></Link>
+        );
+    }
+    function LogOutButton() {
+        function Signout() {
+            sessionStorage.clear();
+            navigate('/');
+        }
+        return(
+            <>
+            <li className="mx-2 md:mx-6 lg:mx-12 text-xl text-rose-500 font-sans px-3 py-2 cursor-pointer" onClick={Signout}>Đăng xuất</li>
+            <li className="mx-2 md:mx-6 lg:mx-12 text-xl text-white font-sans box-decoration-clone bg-gradient-to-r from-rose-400 to-red-500 hover:from-rose-600 hover:to-red-700 hover:duration-300 px-3 py-2">Xin chào, {isLoggedIn}</li>
+            </>
+        );
+    }
     function RenderHeaderNav() {
         return (
         <nav className="hidden sm:flex justify-between items-center bg-white sticky top-0 w-full h-20 z-30">
@@ -12,7 +32,7 @@ const Header = () => {
                 <Link to="/aboutme"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Tôi là ai?</li></Link>
                 <li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Blog</li>
                 <li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Liên hệ</li>
-                <Link to="/login"><li className="mx-2 md:mx-6 lg:mx-12 text-xl text-white font-sans box-decoration-clone bg-gradient-to-r from-rose-400 to-red-500 hover:from-rose-600 hover:to-red-700 hover:duration-300 px-3 py-2">Đăng nhập</li></Link>
+                    {isLoggedIn ? <LogOutButton/> : <LoginButton/>}
                 </ul>
             </div>
         </nav> 
