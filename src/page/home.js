@@ -1,6 +1,8 @@
-import React from 'react';
+import {React,useState} from 'react';
 import Footer from '../constant/footer';
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Home = () => {
     function RenderTextGlitch(){
@@ -17,20 +19,34 @@ const Home = () => {
         );
     }
     function RenderBlogPost(){
-        return(
-            <div className="h-96 w-full bg-white shadow-md">
-                <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('img/post-img.jpg')`}}></div>
-                <div className="container w-11/12 mx-auto mt-2">
-                <h4 className="text-2xl">My Story</h4>
-                <p className="truncate ...">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                <div className="h-full w-full mt-5">
-                    <p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p>
-                    <p className="mt-2 float-right">12:12 August 7, 2022</p>
+        const [blogs,setBlogs] = useState([{}]);
+        useEffect(()=>{
+            axios.get('/getblogs')
+            .then(res => {
+                setBlogs(res.data);
+                console.log(blogs);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+        },[]);
+
+        const RenderSingleBlog = blogs.map((items,id) => {
+            return(
+                <div className="h-96 w-full bg-white shadow-md" key={id}>
+                    <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('${items.image}')`}}></div>
+                    <div className="container w-11/12 mx-auto mt-2">
+                    <h4 className="text-2xl">{items.title}</h4>
+                    <p className="truncate ...">{items.content}</p>
+                    <div className="h-full w-full mt-5">
+                        <p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p>
+                        <p className="mt-2 float-right">{items.date}</p>
+                    </div>
+                    </div>
                 </div>
-                </div>
-            </div>
-            
-        );
+            );      
+        }) 
+        return <>{RenderSingleBlog}</>;
     }
     function RenderWhatsNew(){
         return (
@@ -43,8 +59,6 @@ const Home = () => {
                     <hr className="mt-3 mb-7 w-full mx-auto"></hr>
                     <div className="h-fit w-full mx-auto">
                         <div className="h-fit w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 float-left">
-                        <RenderBlogPost/>
-                        <RenderBlogPost/>
                         <RenderBlogPost/>
                         </div>
                     </div>

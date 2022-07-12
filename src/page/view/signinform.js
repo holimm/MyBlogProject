@@ -20,29 +20,29 @@ function FormLogin() {
       username==='' || password==='' ? messageToastr('Vui lòng nhập đầy đủ thông tin','error') : sendData();
     }
     function sendData(){
-        axios.post('/signin', {
-            username: username,
-            password: password
-          })
-          .then(res => {
-            var respondData = res.data;
-            if(!respondData[0]){
-              // messageToastr('Sai tên đăng nhập hoặc mật khẩu','error');
-              messageSweetAlert('Đăng nhập thất bại',`Sai tên đăng nhập hoặc mật khẩu`,'error');
+      axios.post('/signin', {
+          username: username,
+          password: password
+        })
+        .then(res => {
+          var respondData = res.data;
+          if(!respondData[0]){
+            // messageToastr('Sai tên đăng nhập hoặc mật khẩu','error');
+            messageSweetAlert('Đăng nhập thất bại',`Sai tên đăng nhập hoặc mật khẩu`,'error');
+            return;
+          }
+          else{
+            if(respondData[0].username === username && respondData[0].password === password){
+              messageSweetAlert('Đăng nhập thành công',`Xin chào, ${username}!`,'success');
+              sessionStorage.setItem('username',username);
+              navigate('/');
               return;
             }
-            else{
-              if(respondData[0].username === username && respondData[0].password === password){
-                messageSweetAlert('Đăng nhập thành công',`Xin chào, ${username}!`,'success');
-                sessionStorage.setItem('username',username);
-                navigate('/');
-                return;
-              }
-            }
-          })
-          .catch(function (error) {
-            console.log(error);
-          });        
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });        
     }
     return (
       <form className="mt-5">

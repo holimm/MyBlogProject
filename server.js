@@ -27,3 +27,20 @@ app.post('/signin', function (req, res) {
     });
   });
 });
+
+app.get('/getblogs', function (req, res) {
+  db.mydatabase.connect(function(err){
+    var sql = `SELECT * FROM blog`;
+    db.mydatabase.query(sql, function(err,result,field){
+        if(err){
+          console.log(err);
+        }
+        if(!result[0]) {
+          return res.send(result);          
+        }
+        else{         
+          return res.send(result);
+        }
+    });
+  });
+});
