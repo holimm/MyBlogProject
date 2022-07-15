@@ -24,7 +24,7 @@ const Header = () => {
             <div onMouseEnter={()=>ShowDropdown(true)} onMouseLeave={()=>ShowDropdown(false)} className="mx-2 md:mx-6 lg:mx-12 text-xl text-white font-sans box-decoration-clone bg-gradient-to-r from-rose-400 to-red-500 hover:from-rose-600 hover:to-red-700 hover:duration-300 px-3 py-2 cursor-pointer relative">
                 <span>Xin chào, {isLoggedIn}</span>
                 <div className='bg-white -ml-3 w-full mt-2 absolute cursor-pointer hidden rounded-md' id='logindropdown'>
-                    <div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto my-2 py-1 text-center text-xl text-rose-500 font-sans rounded-md">Viết Blog</div>
+                    <Link to='/write-blog'><div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto my-2 py-1 text-center text-xl text-rose-500 font-sans rounded-md">Viết Blog</div></Link>
                     <div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto mt-2 mb-3 py-1 text-center text-xl text-rose-500 font-sans rounded-md" onClick={Signout}>Đăng xuất</div>
                 </div>
             </div>          

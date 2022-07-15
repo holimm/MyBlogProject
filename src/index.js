@@ -4,6 +4,8 @@ import Layout from "./page/layout";
 import Home from "./page/home";
 import AboutMe from "./page/aboutme";
 import Login from "./page/login";
+import DetailBlog from "./page/detail-blog";
+import WriteBlog from "./page/write-blog";
 
 export default function App() {
     return (
@@ -16,6 +18,8 @@ export default function App() {
         </Routes>
         <Routes>
             <Route path="login" element={<Login />} />
+            <Route path="/detail-blog/:id" element={<DetailBlog />} />
+            <Route path="/write-blog" element={<WriteBlog />} />
         </Routes>
       </BrowserRouter>
     );

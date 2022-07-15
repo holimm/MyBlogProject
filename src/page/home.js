@@ -34,12 +34,12 @@ const Home = () => {
         const RenderSingleBlog = blogs.map((items,id) => {
             return(
                 <div className="h-96 w-full bg-white shadow-md" key={id}>
-                    <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('${items.image}')`}}></div>
+                    <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('/${items.image}')`}}></div>
                     <div className="container w-11/12 mx-auto mt-2">
-                    <h4 className="text-2xl">{items.title}</h4>
+                    <h4 className="text-2xl truncate">{items.title}</h4>
                     <p className="truncate ...">{items.content}</p>
                     <div className="h-full w-full mt-5">
-                        <p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p>
+                        <Link to={`/detail-blog/${items.id}`} ><p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p></Link>
                         <p className="mt-2 float-right">{items.date}</p>
                     </div>
                     </div>
