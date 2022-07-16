@@ -39,7 +39,7 @@ const Header = () => {
                 <ul className="flex justify-between items-start">
                 <Link to="/"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Trang chính</li></Link>
                 <Link to="/aboutme"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Tôi là ai?</li></Link>
-                <li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Blog</li>
+                <Link to="/blogs"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Blogs</li></Link>
                 <li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Liên hệ</li>
                     {isLoggedIn ? <LogOutButton/> : <LoginButton/>}
                 </ul>

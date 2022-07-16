@@ -1,10 +1,23 @@
 import {React,useState} from 'react';
 import Footer from '../constant/footer';
-import { Link } from "react-router-dom";
-import { useEffect } from 'react';
+import { Link, useParams } from "react-router-dom";
+import { useEffect} from 'react';
 import axios from 'axios';
 
 const Home = () => {
+    function GetBlog(){
+        const [blogs,setBlogs] = useState([{}]);
+        useEffect(()=>{
+            axios.get('/getblogs')
+            .then(res => {
+                setBlogs(res.data);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+        },[]);   
+        return blogs;
+    }
     function RenderTextGlitch(){
         return (
         <div className="mt-16 mb-16 z-20 block">
@@ -19,34 +32,46 @@ const Home = () => {
         );
     }
     function RenderBlogPost(){
-        const [blogs,setBlogs] = useState([{}]);
-        useEffect(()=>{
-            axios.get('/getblogs')
-            .then(res => {
-                setBlogs(res.data);
-                console.log(blogs);
-            })
-            .catch(function(err){
-                console.log(err);
-            });
-        },[]);
-
+        var {page} = useParams()
+        if(!page) page=1;
+        var blogs = GetBlog();
+        var index=-1;
+        var from = (page-1)*3;
+        var to = from + 3;
         const RenderSingleBlog = blogs.map((items,id) => {
-            return(
-                <div className="h-96 w-full bg-white shadow-md" key={id}>
-                    <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('/${items.image}')`}}></div>
-                    <div className="container w-11/12 mx-auto mt-2">
-                    <h4 className="text-2xl truncate">{items.title}</h4>
-                    <p className="truncate ...">{items.content}</p>
-                    <div className="h-full w-full mt-5">
-                        <Link to={`/detail-blog/${items.id}`} ><p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p></Link>
-                        <p className="mt-2 float-right">{items.date}</p>
+            index++;
+            if(index >= from && index < to){
+                return(
+                    <div className="h-96 w-full bg-white shadow-md" key={id}>
+                        <div className="h-4/6 bg-cover bg-center" style={{backgroundImage: `url('/${items.image}')`}}></div>
+                        <div className="container w-11/12 mx-auto mt-2">
+                        <h4 className="text-2xl truncate">{items.title}</h4>
+                        <p className="truncate ...">{items.content}</p>
+                        <div className="h-full w-full mt-5">
+                            <Link to={`/detail-blog/${items.id}`} ><p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p></Link>
+                            <p className="mt-2 float-right">{items.date}</p>
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
-            );      
+                );      
+            }
+            else{
+                return;
+            }
         }) 
         return <>{RenderSingleBlog}</>;
+    }
+    function RenderPagination(){
+        var blogs = GetBlog();
+        var length = blogs.length;
+        var numberPage = Math.ceil(length/3)
+        var renderPagination=[];
+        for(var i=1;i<=numberPage;i++){
+            renderPagination.push(
+                <Link to={`/page=${i}`}><div className='bg-white hover:bg-slate-50 text-rose-500 py-3 px-4 mx-1 float-left cursor-pointer'>{i}</div></Link>
+            );
+        }
+        return renderPagination;
     }
     function RenderWhatsNew(){
         return (
@@ -57,10 +82,13 @@ const Home = () => {
                         <p className="text-xl mt-2 text-white text-center">Những blog mới của mình được cập nhật ở đây</p>        
                     </div>
                     <hr className="mt-3 mb-7 w-full mx-auto"></hr>
-                    <div className="h-fit w-full mx-auto">
+                    <div className="h-fit w-full mx-auto inline-block">
                         <div className="h-fit w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 float-left">
                         <RenderBlogPost/>
                         </div>
+                    </div>
+                    <div className="w-full h-fit mt-5 text-xl text-white">
+                        <RenderPagination/>
                     </div>
                     <div className="w-full h-20 mt-6 text-xl text-white float-right ">Xem thêm blog...</div>
                 </div>
@@ -68,7 +96,7 @@ const Home = () => {
         );
     }
     const about_me_line1 = "Mình tên là Nguyễn Lim Thái Hồ. Hiện tại mình đang là sinh viên năm 4 ngành Kỹ thuật phần mềm tại trường Đại Học Sài Gòn.";
-    const about_me_line2 = "Blog này được xem như một Project để mình thực hiện vào mùa hè, để nghiên cứu và học hỏi thêm về React JS, Laravel cũng như TailwindCSS.";
+    const about_me_line2 = "Blog này được xem như một Project để mình thực hiện vào mùa hè, để nghiên cứu và học hỏi thêm về React JS, NodeJS cũng như TailwindCSS.";
     const about_me_line3 = "Ngoài ra thì đây cũng là nơi để mình upload những suy nghĩ, câu chuyện hay cuộc sống của mình. ";
     function RenderAboutMe(props){
         return (
@@ -128,15 +156,3 @@ const Home = () => {
 }
 
 export default Home;
-// const place_blog_wallpaper = ReactDOM.createRoot(document.getElementById('place_blog_wallpaper'));
-// place_blog_wallpaper.render(<RenderWallpaper/>);
-// const place_text_glitch = ReactDOM.createRoot(document.getElementById('place_text_glitch'));
-// place_text_glitch.render(<RenderTextGlitch/>);
-// const place_whats_new = ReactDOM.createRoot(document.getElementById('place_whats_new'));
-// place_whats_new.render(<RenderWhatsNew/>);
-// const place_about_me = ReactDOM.createRoot(document.getElementById('place_about_me'));
-// place_about_me.render(<RenderAboutMe line1={about_me_line1} line2={about_me_line2} line3={about_me_line3} line4={about_me_line4}/>);
-// const place_footer = ReactDOM.createRoot(document.getElementById('place_footer'));
-// place_footer.render(<RenderFooter/>);
-// const place_instagram_post = ReactDOM.createRoot(document.getElementById('place_instagram_post'));
-// place_instagram_post.render(<RenderInstagramPost/>);

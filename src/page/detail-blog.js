@@ -2,8 +2,10 @@ import React, { useEffect } from "react";
 import { ReactDOM, useState } from "react";
 import Header from "./header";
 import Footer from "../constant/footer";
+import SideProfile from "./view/sideprofile";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function DetailBlog(){
     var { id } = useParams();
@@ -60,7 +62,7 @@ function DetailBlog(){
                 <div className="w-full h-full" key={id}>
                     <div className="w-full h-56 bg-cover bg-center" style={{backgroundImage: `url('/img/post-img.jpg')`}}></div>
                     <p className="text-rose-500 text-md my-1">Blog</p>
-                    <h2 className="text-rose-500 text-3xl my-1 mb-5">{items.title}</h2>
+                    <Link to={`/detail-blog/${items.id}`}><h2 className="text-rose-500 text-3xl my-1 mb-5 truncate">{items.title}</h2></Link>
                 </div>
             );         
         })
@@ -96,12 +98,7 @@ function DetailBlog(){
                     <RenderComment/>
                 </div>
                 <div className="w-full md:w-3/12 h-fit float-left">
-                    <div className="w-11/12 float-right">
-                        <div className="w-full h-fit">
-                            <div className="w-full h-72 bg-cover bg-center" style={{backgroundImage: `url('/img/myAvatar.jpg')`}}></div>
-                        </div>
-                        <button className="bg-gradient-to-r from-rose-400 via-red-500 to-rose-600 mx-auto text-white p-2 mt-3 rounded-md ">Follow on Instagram</button>
-                    </div>
+                    <SideProfile/>
                 </div>
             </div>
         );

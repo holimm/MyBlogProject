@@ -6,6 +6,7 @@ import AboutMe from "./page/aboutme";
 import Login from "./page/login";
 import DetailBlog from "./page/detail-blog";
 import WriteBlog from "./page/write-blog";
+import Blogs from "./page/blogs";
 
 export default function App() {
     return (
@@ -13,13 +14,15 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="aboutme" element={<AboutMe />} />
+            <Route path="/page=:page" element={<Home />} />
+            <Route path="/aboutme" element={<AboutMe />} />
           </Route>
         </Routes>
         <Routes>
-            <Route path="login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/detail-blog/:id" element={<DetailBlog />} />
             <Route path="/write-blog" element={<WriteBlog />} />
+            <Route path="/blogs" element={<Blogs />} />
         </Routes>
       </BrowserRouter>
     );

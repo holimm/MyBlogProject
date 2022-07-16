@@ -10,7 +10,7 @@ const AboutMe = () => {
         line3: "Cho tới năm 2, khi mình bắt đầu học về giao diện, học về HTML,CSS,Javascript và PHP. Mình bắt đầu có niềm đam mê học tập trở lại.",
         line4: "May mắn vào lúc đó, một người bạn của mình đã mở một server Minecraft và cần một trang web cho việc nạp thẻ, mình bắt tay vào làm project lớn đầu tiên bằng những gì mình học được. Sau khi hoàn thành bạn mình đã up lên host và hoạt động tại id.mineinus.com",
         line5: "Sau khoảng 6 tháng thì mình update website đó, giao diện mới và sử dụng AJAX. Trong cuộc hành trình đó mình đã học được rất nhiều điều mới mẻ",
-        line6: "Cho tới Hè năm nay, 2022. Mình muốn bắt đầu một cái gì đó mới nên mình đã tạo ra website này bằng ReactJS, Nodejs và TailwindCSS, với mục đích thử nghiệm là chính.",
+        line6: "Cho tới Hè năm nay, 2022. Mình muốn bắt đầu một cái gì đó mới nên mình đã tạo ra website này bằng ReactJS, NodeJS và TailwindCSS, với mục đích thử nghiệm là chính.",
         line7: "Cảm ơn mọi người đã ghé trang web của mình!!"
     }
     function RenderAboutMe(props){

@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import toastr from 'toastr';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import {messageToastr, messageSweetAlert} from '../accessible/message.js';
 
 function FormLogin() {
