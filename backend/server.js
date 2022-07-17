@@ -3,10 +3,11 @@ var path = require('path');
 var multer = require('multer');
 var db = require('./database')
 const bcrypt = require('bcrypt');
+const PORT = 3301;
 
 var app = express();
-app.listen(8080, function() {
-	console.log('started listen port', 8080);
+app.listen(process.env.PORT || PORT, function() {
+	console.log(`started listen port ${PORT}`);
 });
 var bodyParser = require("body-parser");
 app.use(bodyParser.json());
