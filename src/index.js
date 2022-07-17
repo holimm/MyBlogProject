@@ -7,6 +7,8 @@ import Login from "./page/login";
 import DetailBlog from "./page/detail-blog";
 import WriteBlog from "./page/write-blog";
 import Blogs from "./page/blogs";
+import BlogsManager from "./page/blogsmanager";
+import EditBlog from "./page/edit-blog";
 
 export default function App() {
     return (
@@ -21,8 +23,14 @@ export default function App() {
         <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/detail-blog/:id" element={<DetailBlog />} />
+            <Route path="/detail-blog/:id/page=:page" element={<DetailBlog />} />
             <Route path="/write-blog" element={<WriteBlog />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogs/page=:page" element={<Blogs />} />
+            <Route path="/manage-blogs" element={<BlogsManager />} />
+            <Route path="/manage-blogs/visibility=:visible" element={<BlogsManager />} />
+            <Route path="/manage-blogs/visibility=:visible/page=:page" element={<BlogsManager />} />
+            <Route path="/edit-blog/id=:id" element={<EditBlog />} />
         </Routes>
       </BrowserRouter>
     );

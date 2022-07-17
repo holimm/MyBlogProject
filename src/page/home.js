@@ -1,23 +1,15 @@
-import {React,useState} from 'react';
+import {React} from 'react';
 import Footer from '../constant/footer';
 import { Link, useParams } from "react-router-dom";
-import { useEffect} from 'react';
-import axios from 'axios';
+import {GetBlogs} from './accessible/axiosdata';
+import { formatDate } from './accessible/message';
 
 const Home = () => {
-    function GetBlog(){
-        const [blogs,setBlogs] = useState([{}]);
-        useEffect(()=>{
-            axios.get('/getblogs')
-            .then(res => {
-                setBlogs(res.data);
-            })
-            .catch(function(err){
-                console.log(err);
-            });
-        },[]);   
-        return blogs;
-    }
+    var blogsAxios = GetBlogs();
+    var blogs = blogsAxios.filter(object =>{
+        return object.state !== 0;
+    });
+    // blogs.splice(indexOfBlogs);
     function RenderTextGlitch(){
         return (
         <div className="mt-16 mb-16 z-20 block">
@@ -34,7 +26,6 @@ const Home = () => {
     function RenderBlogPost(){
         var {page} = useParams()
         if(!page) page=1;
-        var blogs = GetBlog();
         var index=-1;
         var from = (page-1)*3;
         var to = from + 3;
@@ -49,20 +40,19 @@ const Home = () => {
                         <p className="truncate ...">{items.content}</p>
                         <div className="h-full w-full mt-5">
                             <Link to={`/detail-blog/${items.id}`} ><p className="text-blue-700 mt-2 cursor-pointer float-left">Read more...</p></Link>
-                            <p className="mt-2 float-right">{items.date}</p>
+                            <p className="mt-2 float-right">{formatDate(items.date)}</p>
                         </div>
                         </div>
                     </div>
-                );      
+                ); 
             }
             else{
-                return;
+                return '';
             }
         }) 
         return <>{RenderSingleBlog}</>;
     }
     function RenderPagination(){
-        var blogs = GetBlog();
         var length = blogs.length;
         var numberPage = Math.ceil(length/3)
         var renderPagination=[];
@@ -132,14 +122,23 @@ const Home = () => {
                 <h2 className="text-3xl text-white text-center">My Instagram</h2>      
             </div>
             <hr className="mt-3 mb-7 w-full mx-auto"></hr>
-            <div className="h-fit w-full mx-auto">
+            <div className="h-fit w-full mx-auto inline-block">
                 <div className="h-fit w-full grid md:grid-cols-4 gap-5 float-left">
                 <div className="h-80 w-full bg-white shadow-md">
-                    <div className="h-full bg-cover bg-center" style={{backgroundImage: `url('img/myAvatar.jpg')`}}></div>
+                    <div className="h-full bg-cover bg-center" style={{backgroundImage: `url('img/insta1.jpg')`}}></div>
+                </div>
+                <div className="h-80 w-full bg-white shadow-md">
+                    <div className="h-full bg-cover bg-center" style={{backgroundImage: `url('img/insta2.jpg')`}}></div>
+                </div>
+                <div className="h-80 w-full bg-white shadow-md">
+                    <div className="h-full bg-cover bg-center" style={{backgroundImage: `url('img/insta3.jpg')`}}></div>
+                </div>
+                <div className="h-80 w-full bg-white shadow-md">
+                    <div className="h-full bg-cover bg-center" style={{backgroundImage: `url('img/insta4.jpg')`}}></div>
                 </div>
                 </div>
             </div>
-            <div className="w-full h-20 mt-6 text-xl text-white float-right ">Xem thêm về instagram...</div>
+            <a href="https://www.instagram.com/millohh_/" target="_blank" rel="noreferrer"><div className="w-full h-20 mt-7 text-xl text-white float-right ">Xem thêm trên instagram của tôi...</div></a>
             </div>
             </div>
         );

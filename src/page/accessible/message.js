@@ -12,4 +12,8 @@ export function messageToastr(message,type){
 export function messageSweetAlert(title,message,type){
     return Swal.fire(title,message,type);
 }
+export function formatDate(string){
+    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(string).toLocaleDateString([],options);
+}
 

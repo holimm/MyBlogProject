@@ -25,6 +25,7 @@ const Header = () => {
                 <span>Xin chào, {isLoggedIn}</span>
                 <div className='bg-white -ml-3 w-full mt-2 absolute cursor-pointer hidden rounded-md' id='logindropdown'>
                     <Link to='/write-blog'><div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto my-2 py-1 text-center text-xl text-rose-500 font-sans rounded-md">Viết Blog</div></Link>
+                    <Link to='/manage-blogs/visibility=showing'><div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto my-2 py-1 text-center text-xl text-rose-500 font-sans rounded-md">Quản lý Blogs</div></Link>
                     <div className="hover:bg-rose-500 hover:text-white w-5/6 mx-auto mt-2 mb-3 py-1 text-center text-xl text-rose-500 font-sans rounded-md" onClick={Signout}>Đăng xuất</div>
                 </div>
             </div>          
@@ -40,7 +41,6 @@ const Header = () => {
                 <Link to="/"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Trang chính</li></Link>
                 <Link to="/aboutme"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Tôi là ai?</li></Link>
                 <Link to="/blogs"><li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Blogs</li></Link>
-                <li className="mx-2 md:mx-6 lg:mx-12 text-xl font-sans hover:text-rose-500 px-3 py-2">Liên hệ</li>
                     {isLoggedIn ? <LogOutButton/> : <LoginButton/>}
                 </ul>
             </div>

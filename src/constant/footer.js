@@ -8,15 +8,14 @@ const Footer = () => {
             <div className="h-auto w-full">
             <div className="h-fit w-5/6 mx-auto">
                 <div className="h-10 w-full mt-10">
-                <h2 className="text-3xl text-rose-500 text-center">My Footer</h2>    
+                <h2 className="text-3xl text-rose-500 text-center">Cảm ơn đã ghé thăm web của mình</h2>    
                 </div>
-                <div className="h-10 w-full mt-10">
-                    <ul className="flex justify-between items-start w-full sm:w-2/4 mx-auto">
-                    <Link to="/"><li className="text-lg font-sans hover:text-rose-500">Trang chính</li></Link>
-                    <Link to="/aboutme"><li className="text-lg font-sans hover:text-rose-500">Tôi là ai?</li></Link>
-                    <li className="text-lg font-sans hover:text-rose-500">Blog</li>
-                    <li className="text-lg font-sans hover:text-rose-500">Liên hệ</li>
-                    </ul>
+                <div className="h-10 w-full mt-3 inline-block">
+                    <div className="w-fit sm:w-2/4 mx-auto">
+                    <Link to="/"><div className="text-lg my-3 mx-5 font-sans hover:text-rose-500 text-center">Trang chính</div></Link>
+                    <Link to="/aboutme"><div className="text-lg my-3 mx-5 font-sans hover:text-rose-500 text-center">Tôi là ai?</div></Link>
+                    <Link to="/blogs"><div className="text-lg my-3 mx-5 font-sans hover:text-rose-500 text-center">Blog</div></Link>
+                    </div>
                 </div>
                 <div className="h-10 w-full mt-10">
                 <div className="justify-items-center w-1/4 mx-auto grid grid-cols-3">

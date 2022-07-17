@@ -24,18 +24,16 @@ function FormLogin() {
         })
         .then(res => {
           var respondData = res.data;
-          if(!respondData[0]){
-            // messageToastr('Sai tên đăng nhập hoặc mật khẩu','error');
-            messageSweetAlert('Đăng nhập thất bại',`Sai tên đăng nhập hoặc mật khẩu`,'error');
+          if(respondData.status === 'error'){
+            messageSweetAlert('Đăng nhập thất bại',`${respondData.content}`,'error');
             return;
           }
           else{
-            if(respondData[0].username === username && respondData[0].password === password){
-              messageSweetAlert('Đăng nhập thành công',`Xin chào, ${username}!`,'success');
-              sessionStorage.setItem('username',username);
+              messageSweetAlert('Đăng nhập thành công',`Xin chào, ${respondData[0].username}!`,'success');
+              sessionStorage.setItem('username',respondData[0].username);
+              sessionStorage.setItem('fullname',respondData[0].name);
               navigate('/');
               return;
-            }
           }
         })
         .catch(function (error) {
