@@ -3,7 +3,7 @@ var path = require('path');
 var multer = require('multer');
 var db = require('./database')
 const bcrypt = require('bcrypt');
-const PORT = 3301;
+const PORT = 8080;
 
 var app = express();
 app.listen(process.env.PORT || PORT, function() {

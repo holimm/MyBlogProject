@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import moment from "moment";
 import vietnameseConvert from "../accessible/vietnameseConvert";
 import {messageSweetAlert, messageToastr} from "../accessible/message";
 import { GetBlogDetail } from "../accessible/axiosdata";
@@ -14,9 +13,6 @@ function FormEditBlog(){
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
 
-    useEffect(()=>{
-        selectCategory(blogs[0].category);
-    },[]);
     function handleTitleChange(e){
         setTitle(e.target.value);
         document.getElementById('preview_render_blog_title').innerHTML = e.target.value;
@@ -53,10 +49,6 @@ function FormEditBlog(){
             default: 
                 break;
         }
-    }
-    function selectCategory(value) {    
-        let element = document.getElementById('blog-category');
-        element.value = value;
     }
 
     function postBlog(){

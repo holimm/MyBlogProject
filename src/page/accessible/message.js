@@ -7,6 +7,8 @@ export function messageToastr(message,type){
             return toastr.success(message);
         case 'error':
             return toastr.error(message);
+        default:
+            return;
     }
 }
 export function messageSweetAlert(title,message,type){

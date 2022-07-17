@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./header";
 import Footer from "../constant/footer";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {GetBlogs} from "./accessible/axiosdata";
 import { messageSweetAlert, formatDate } from "./accessible/message";
@@ -85,7 +85,7 @@ function BlogsManager(){
         var from = (page-1)*5;
         var to = from + 5;
         var RenderRelatedBlog = [];
-        if(blogs.length!=0){
+        if(blogs.length!==0){
             RenderRelatedBlog = blogs.map((items,id) => {
                 index++;
                 if(index >= from && index < to){
