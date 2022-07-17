@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var multer = require('multer');
-var db = require('./backend/database')
+var db = require('./database')
 const bcrypt = require('bcrypt');
 
 var app = express();
